@@ -30,7 +30,7 @@
      </size>
     </property>
     <property name="cursor">
-     <cursorShape>IBeamCursor</cursorShape>
+     <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="mouseTracking">
      <bool>true</bool>
@@ -45,7 +45,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page_tournamentSelection">
      <widget class="QWidget" name="layoutWidget">
@@ -568,88 +568,224 @@
      </widget>
     </widget>
     <widget class="QWidget" name="page_tournyConstants">
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="horizontalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>90</y>
-        <width>125</width>
-        <height>32</height>
+        <x>160</x>
+        <y>230</y>
+        <width>471</width>
+        <height>80</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_player">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QLabel" name="lbl_player">
+        <widget class="QPushButton" name="btn_back_FFA">
          <property name="text">
-          <string>Spieler</string>
+          <string>Back</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="spinBox"/>
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>140</y>
-        <width>125</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_device">
        <item>
-        <widget class="QLabel" name="lbl_device">
+        <widget class="QPushButton" name="btn_next_FFA">
          <property name="text">
-          <string>Geräte</string>
+          <string>Next</string>
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QSpinBox" name="spinBox_2"/>
-       </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>190</y>
-        <width>125</width>
-        <height>32</height>
+        <x>160</x>
+        <y>30</y>
+        <width>471</width>
+        <height>164</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_round">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QLabel" name="lbl_round">
-         <property name="text">
-          <string>Runden</string>
-         </property>
-        </widget>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Jeder vs Jeder</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <spacer name="horizontalSpacer_10">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="0">
+          <spacer name="horizontalSpacer_9">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </item>
        <item>
-        <widget class="QSpinBox" name="spinBox_3"/>
+        <layout class="QFormLayout" name="formLayout">
+         <item row="1" column="0" colspan="2">
+          <layout class="QHBoxLayout" name="horizontalLayout_device">
+           <item>
+            <widget class="QLabel" name="lbl_device">
+             <property name="text">
+              <string>Geräte</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_7">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="sB_device">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>999</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <layout class="QHBoxLayout" name="horizontalLayout_player">
+           <item>
+            <widget class="QLabel" name="lbl_player">
+             <property name="text">
+              <string>Spieler</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="sB_player">
+             <property name="minimum">
+              <number>2</number>
+             </property>
+             <property name="maximum">
+              <number>999</number>
+             </property>
+             <property name="singleStep">
+              <number>1</number>
+             </property>
+             <property name="value">
+              <number>2</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="2" column="0" colspan="2">
+          <layout class="QHBoxLayout" name="horizontalLayout_round">
+           <item>
+            <widget class="QLabel" name="lbl_round">
+             <property name="text">
+              <string>Runden</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="sB_round">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>999</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </item>
       </layout>
-     </widget>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>240</y>
-        <width>98</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Back</string>
-      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="page_tournyConstants_2"/>
     <widget class="QWidget" name="page_tournyConstants_3"/>
+    <widget class="QWidget" name="page_tournyNames">
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>30</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Insert Player Names</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

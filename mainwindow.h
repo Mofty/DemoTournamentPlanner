@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSpinBox>
 
 namespace Ui {
 class MainWindow;
@@ -22,10 +23,21 @@ private slots:
 
     void on_btn_swiss_clicked();
 
-    void on_pushButton_clicked();
+    void on_btn_back_FFA_clicked();
+
+    void on_btn_next_FFA_clicked();
+
+    void on_sB_player_editingFinished();
+
+    void on_sB_device_editingFinished();
+
+    void on_sB_round_editingFinished();
 
 private:
     void setIcons();
+    QSpinBox *sB_player;
+    QSpinBox *valueDevice;
+    QSpinBox *valueRound;
     Ui::MainWindow *ui;
 };
 
