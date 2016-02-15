@@ -18,9 +18,14 @@ public:
 private slots:
     void on_btn_FFA_clicked();
 
-    void on_btn_swiss_3_clicked();
+    void on_btn_round_game_clicked();
+
+    void on_btn_swiss_clicked();
+
+    void on_pushButton_clicked();
 
 private:
+    void setIcons();
     Ui::MainWindow *ui;
 };
 

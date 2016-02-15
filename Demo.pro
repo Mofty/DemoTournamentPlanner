@@ -18,3 +18,9 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    gamer-pc-65x65.jpg \
+    Sven c++ Button.png \
+    Sven c++ Button.png \
+    Sven c++ Button.png

@@ -23,6 +23,27 @@
       <height>361</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>801</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="cursor">
+     <cursorShape>IBeamCursor</cursorShape>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="acceptDrops">
+     <bool>true</bool>
+    </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
@@ -78,6 +99,9 @@
        </item>
        <item>
         <widget class="QLineEdit" name="edt_newTourney">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
            <horstretch>0</horstretch>
@@ -97,6 +121,15 @@
          </property>
          <property name="mouseTracking">
           <bool>true</bool>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::ClickFocus</enum>
+         </property>
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="acceptDrops">
+          <bool>false</bool>
          </property>
          <property name="statusTip">
           <string/>
@@ -319,7 +352,8 @@
              </property>
              <property name="icon">
               <iconset>
-               <normaloff>csgo.png</normaloff>csgo.png</iconset>
+               <normaloff>csgo.png</normaloff>
+               <normalon>gamer-pc-65x65.jpg</normalon>csgo.png</iconset>
              </property>
              <property name="iconSize">
               <size>
@@ -463,13 +497,22 @@
              </property>
              <property name="icon">
               <iconset>
-               <normaloff>toilet.png</normaloff>toilet.png</iconset>
+               <normaloff>gamer-pc-65x65.jpg</normaloff>gamer-pc-65x65.jpg</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>65</width>
+               <height>65</height>
+              </size>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
              </property>
              <property name="autoDefault">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
              <property name="default">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
              <property name="flat">
               <bool>false</bool>
@@ -525,7 +568,7 @@
      </widget>
     </widget>
     <widget class="QWidget" name="page_tournyConstants">
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>320</x>
@@ -534,7 +577,7 @@
         <height>32</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout_player">
        <item>
         <widget class="QLabel" name="lbl_player">
          <property name="text">
@@ -547,7 +590,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>320</x>
@@ -556,7 +599,7 @@
         <height>32</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <layout class="QHBoxLayout" name="horizontalLayout_device">
        <item>
         <widget class="QLabel" name="lbl_device">
          <property name="text">
@@ -569,7 +612,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>320</x>
@@ -578,7 +621,7 @@
         <height>32</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <layout class="QHBoxLayout" name="horizontalLayout_round">
        <item>
         <widget class="QLabel" name="lbl_round">
          <property name="text">
@@ -591,7 +634,22 @@
        </item>
       </layout>
      </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>240</y>
+        <width>98</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Back</string>
+      </property>
+     </widget>
     </widget>
+    <widget class="QWidget" name="page_tournyConstants_2"/>
+    <widget class="QWidget" name="page_tournyConstants_3"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
