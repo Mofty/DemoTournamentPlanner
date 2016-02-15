@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     ui->setupUi(this);
 
+
+    //lullu
     ui->btn_round_game = (QPushButton *)ui->btn_round_game;
     ui->btn_round_game->setIconSize(QSize(ui->btn_round_game->size().width(),ui->btn_round_game->size().height()));
     QPixmap* pixmap1 = new QPixmap("/home/mofty/Dokumente/BA/programming_cpp/Demo/gamer-pc-65x65.jpg");
