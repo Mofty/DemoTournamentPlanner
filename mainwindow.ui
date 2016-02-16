@@ -579,7 +579,7 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QPushButton" name="btn_back_FFA">
+        <widget class="QPushButton" name="btn_back_page2">
          <property name="text">
           <string>Back</string>
          </property>
@@ -599,7 +599,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_next_FFA">
+        <widget class="QPushButton" name="btn_next_page2">
          <property name="text">
           <string>Next</string>
          </property>
@@ -769,23 +769,7 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_tournyConstants_2"/>
-    <widget class="QWidget" name="page_tournyConstants_3"/>
-    <widget class="QWidget" name="page_tournyNames">
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>30</y>
-        <width>141</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Insert Player Names</string>
-      </property>
-     </widget>
-    </widget>
+    <widget class="QWidget" name="page_tournyNames"/>
     <widget class="QWidget" name="page_tournyResult">
      <widget class="QTableWidget" name="tableWidget">
       <property name="geometry">

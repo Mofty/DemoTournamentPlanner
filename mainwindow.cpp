@@ -50,31 +50,6 @@ void MainWindow::setIcons()
 
 }
 
-void MainWindow::on_btn_FFA_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(1); //constants Page
-}
-
-void MainWindow::on_btn_round_game_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(2); //constants Page
-}
-
-void MainWindow::on_btn_swiss_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(3); //constants Page
-}
-
-void MainWindow::on_btn_back_FFA_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(0); //constants Page
-}
-
-void MainWindow::on_btn_next_FFA_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(4); //constants Page
-}
-
 void MainWindow::on_sB_player_editingFinished()
 {
     //ui->sB_player->value();
@@ -114,16 +89,6 @@ void MainWindow::handleEditsAdded()
     m_layout->addWidget(ledits);
 }
 
-void MainWindow::btnForwardFunc()
-{
-    ui->stackedWidget->setCurrentIndex(1);
-}
-
-void MainWindow::btnBackFunc()
-{
-    ui->stackedWidget->setCurrentIndex(2);
-}
-
 void MainWindow::setUiForPagePlayers()
 {
     //container widget
@@ -157,17 +122,17 @@ void MainWindow::setUiForPagePlayers()
     vLayout->setSizeConstraint(QLayout::SetMinimumSize);
     vLayout->addWidget(scroll);
 
-    QPushButton* btn_back = new QPushButton("Back");
-    btn_back->setMaximumHeight(25);
-    btn_back->setMaximumWidth(100);
-    connect(btn_back, SIGNAL (clicked()),this, SLOT (btnForwardFunc()));
-    vLayout->addWidget(btn_back);
-
     QPushButton* btn_forward = new QPushButton("Next");
     btn_forward->setMaximumHeight(25);
     btn_forward->setMaximumWidth(100);
-    connect(btn_forward, SIGNAL (clicked()),this, SLOT (btnBackFunc()));
+    connect(btn_forward, SIGNAL (clicked()),this, SLOT (btnForwardFunc()));
     vLayout->addWidget(btn_forward);
+
+    QPushButton* btn_back = new QPushButton("Back");
+    btn_back->setMaximumHeight(25);
+    btn_back->setMaximumWidth(100);
+    connect(btn_back, SIGNAL (clicked()),this, SLOT (btnBackFunc()));
+    vLayout->addWidget(btn_back);
 
     QHBoxLayout* tmplayout = new QHBoxLayout(this);
     tmplayout->setContentsMargins(0, 0, 0, 0);
@@ -175,4 +140,29 @@ void MainWindow::setUiForPagePlayers()
     tmplayout->addWidget(btn_forward);
 
     vLayout->addLayout(tmplayout);
+}
+
+void MainWindow::on_btn_next_page2_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->page_tournyNames);
+}
+
+void MainWindow::on_btn_FFA_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->page_tournyConstants);
+}
+
+void MainWindow::btnForwardFunc()
+{
+    ui->stackedWidget->setCurrentWidget(ui->page_tournyResult);
+}
+
+void MainWindow::btnBackFunc()
+{
+    ui->stackedWidget->setCurrentWidget(ui->page_tournyConstants);
+}
+
+void MainWindow::on_btn_back_page2_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->page_tournamentSelection);
 }

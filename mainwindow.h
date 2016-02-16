@@ -19,16 +19,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_btn_FFA_clicked();
-
-    void on_btn_round_game_clicked();
-
-    void on_btn_swiss_clicked();
-
-    void on_btn_back_FFA_clicked();
-
-    void on_btn_next_FFA_clicked();
-
     void on_sB_player_editingFinished();
 
     void on_sB_device_editingFinished();
@@ -42,6 +32,12 @@ private slots:
     void btnForwardFunc();
 
     void btnBackFunc();
+
+    void on_btn_next_page2_clicked();
+
+    void on_btn_FFA_clicked();
+
+    void on_btn_back_page2_clicked();
 
 private:
     void setIcons();
