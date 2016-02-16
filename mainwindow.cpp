@@ -7,7 +7,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     ui->setupUi(this);
 
-    sB_player = new QSpinBox;
+    //sB_player = new QSpinBox;
+    //sB_device = new QSpinBox;
+    //sB_round = new QSpinBox;
 
     setIcons();
 }
@@ -66,21 +68,18 @@ void MainWindow::on_btn_next_FFA_clicked()
 
 void MainWindow::on_sB_player_editingFinished()
 {
-
-   // valuePlayer->value();
-    //int player = players->value();
-    qWarning() << "player: " << QSpinBox::value(sB_player);
+    //ui->sB_player->value();
+    qWarning() << "player: " << ui->sB_player->value();
 }
 
 void MainWindow::on_sB_device_editingFinished()
 {
-   // int devices = QSpinBox::value();
-
-    //qWarning << "devices: " << devices;
+   //ui->sB_device->value();
+   qWarning() << "device: " << ui->sB_device->value();
 }
 
 void MainWindow::on_sB_round_editingFinished()
 {
- //   int rounds = QSpinBox::value();
-  //  qWarning << "rounds: " << rounds;
+  //ui->sB_round->value();
+  qWarning() << "round: " << ui->sB_round->value();
 }

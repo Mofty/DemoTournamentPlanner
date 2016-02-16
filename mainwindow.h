@@ -36,8 +36,8 @@ private slots:
 private:
     void setIcons();
     QSpinBox *sB_player;
-    QSpinBox *valueDevice;
-    QSpinBox *valueRound;
+    QSpinBox *sB_device;
+    QSpinBox *sB_round;
     Ui::MainWindow *ui;
 };
 
