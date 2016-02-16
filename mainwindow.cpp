@@ -2,6 +2,12 @@
 #include "ui_mainwindow.h"
 #include <QDir>
 #include <QDebug>
+#include <QMessageBox>
+#include <QScrollArea>
+#include <QVBoxLayout>
+#include <QLineEdit>
+#include <QDesktopWidget>
+#include <QPushButton>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -12,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     //sB_round = new QSpinBox;
 
     setIcons();
+
+    setUiForPagePlayers();
+
 }
 
 MainWindow::~MainWindow()
@@ -82,4 +91,88 @@ void MainWindow::on_sB_round_editingFinished()
 {
   //ui->sB_round->value();
   qWarning() << "round: " << ui->sB_round->value();
+}
+
+void MainWindow::handleEdits()
+{
+    disconnect(m_lineedit, SIGNAL (textEdited(QString)),this, SLOT (handleEdits()));
+    QLineEdit* ledits = new QLineEdit;
+    ledits->setMaximumHeight(25);
+    ledits->setMaximumWidth(125);
+    connect(ledits, SIGNAL (textEdited(QString)),this, SLOT (handleEditsAdded()));
+    m_layout->addWidget(ledits);
+}
+
+void MainWindow::handleEditsAdded()
+{
+    QObject* obj = sender();
+    disconnect(obj, SIGNAL(textEdited(QString)) , 0, 0);
+    QLineEdit* ledits = new QLineEdit;
+    ledits->setMaximumHeight(25);
+    ledits->setMaximumWidth(125);
+    connect(ledits, SIGNAL (textEdited(QString)),this, SLOT (handleEditsAdded()));
+    m_layout->addWidget(ledits);
+}
+
+void MainWindow::btnForwardFunc()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::btnBackFunc()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::setUiForPagePlayers()
+{
+    //container widget
+    QWidget* qwidget = new QWidget;
+    //ly of container widget
+    m_layout = new QVBoxLayout(ui->page_tournyNames);
+    m_layout->setSizeConstraint(QLayout::SetMinimumSize);
+    //add Label "new Players"
+    QLabel* lbltop = new QLabel;
+    lbltop->setText("Enter Playernames: ");
+    lbltop->setFont(QFont("Constantia", 12));
+    m_layout->addWidget(lbltop);
+    //add the first edit
+    m_lineedit = new QLineEdit;
+    m_lineedit->setMaximumHeight(25);
+    m_lineedit->setMaximumWidth(125);
+    connect(m_lineedit, SIGNAL (textEdited(QString)),this, SLOT (handleEdits()));
+    m_layout->addWidget(m_lineedit);
+
+    //layout zum widget hinzufuegen
+    qwidget->setLayout(m_layout);
+    //scroll prop
+    QScrollArea * scroll = new QScrollArea;
+    scroll->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    scroll->setWidgetResizable(false);
+    scroll->setAlignment(Qt::AlignCenter);
+    scroll->setWidget(qwidget);
+    //scroll area layer add
+    QVBoxLayout* vLayout = new QVBoxLayout(ui->page_tournyNames);
+    vLayout->setSizeConstraint(QLayout::SetMinimumSize);
+    vLayout->addWidget(scroll);
+
+    QPushButton* btn_back = new QPushButton("Back");
+    btn_back->setMaximumHeight(25);
+    btn_back->setMaximumWidth(100);
+    connect(btn_back, SIGNAL (clicked()),this, SLOT (btnForwardFunc()));
+    vLayout->addWidget(btn_back);
+
+    QPushButton* btn_forward = new QPushButton("Next");
+    btn_forward->setMaximumHeight(25);
+    btn_forward->setMaximumWidth(100);
+    connect(btn_forward, SIGNAL (clicked()),this, SLOT (btnBackFunc()));
+    vLayout->addWidget(btn_forward);
+
+    QHBoxLayout* tmplayout = new QHBoxLayout(this);
+    tmplayout->setContentsMargins(0, 0, 0, 0);
+    tmplayout->addWidget(btn_back);
+    tmplayout->addWidget(btn_forward);
+
+    vLayout->addLayout(tmplayout);
 }

@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QSpinBox>
+#include <QVBoxLayout>
+#include <QLineEdit>
 
 namespace Ui {
 class MainWindow;
@@ -33,11 +35,25 @@ private slots:
 
     void on_sB_round_editingFinished();
 
+    void handleEdits();
+
+    void handleEditsAdded();
+
+    void btnForwardFunc();
+
+    void btnBackFunc();
+
 private:
     void setIcons();
+    void setUiForPagePlayers();
+
+    QVBoxLayout *m_layout; //ly page 3
+    QLineEdit *m_lineedit;
+
     QSpinBox *sB_player;
     QSpinBox *sB_device;
     QSpinBox *sB_round;
+
     Ui::MainWindow *ui;
 };
 
