@@ -13,9 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    roundrobin.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    roundrobin.h
 
 FORMS    += mainwindow.ui
 

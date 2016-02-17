@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "roundrobin.h"
 #include <QDir>
 #include <QDebug>
 #include <QMessageBox>
@@ -8,19 +9,16 @@
 #include <QLineEdit>
 #include <QDesktopWidget>
 #include <QPushButton>
+#include <QTableWidget>
+
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    //sB_player = new QSpinBox;
-    //sB_device = new QSpinBox;
-    //sB_round = new QSpinBox;
-
     setIcons();
 
     setUiForPagePlayers();
-
 }
 
 MainWindow::~MainWindow()
@@ -52,20 +50,19 @@ void MainWindow::setIcons()
 
 void MainWindow::on_sB_player_editingFinished()
 {
-    //ui->sB_player->value();
-    qWarning() << "player: " << ui->sB_player->value();
+    qWarning() << "player: " << ui->sB_GAMENUMPLAYER->value();
 }
 
 void MainWindow::on_sB_device_editingFinished()
 {
-   //ui->sB_device->value();
-   qWarning() << "device: " << ui->sB_device->value();
+    //ui->sB_device->value();
+    qWarning() << "device: " << ui->sB_NUMPLAYER->value();
 }
 
 void MainWindow::on_sB_round_editingFinished()
 {
-  //ui->sB_round->value();
-  qWarning() << "round: " << ui->sB_round->value();
+    //ui->sB_round->value();
+    qWarning() << "round: " << ui->sB_NUMROUND->value();
 }
 
 void MainWindow::handleEdits()
@@ -154,6 +151,27 @@ void MainWindow::on_btn_FFA_clicked()
 
 void MainWindow::btnForwardFunc()
 {
+    for (int i = 0; i < m_layout->count(); ++i)
+    {
+        QWidget *widget = m_layout->itemAt(i)->widget();
+        QLineEdit* edit =  qobject_cast<QLineEdit*>(widget);
+
+        if (edit != NULL)
+        {
+            strl_Namen << edit->text();
+        }
+
+    }
+
+    RoundRobin* rr = new RoundRobin(ui->sB_GAMENUMPLAYER->value(), ui->sB_NUMPLAYER->value(), ui->sB_NUMROUND->value());
+
+    //Ergebnissliste ; Teams-Trenner + Rundentrenner
+    rr_Ergebniss  = rr->mainMethod();
+
+    //Tabelle füllen
+    setUiForPageResult();
+
+
     ui->stackedWidget->setCurrentWidget(ui->page_tournyResult);
 }
 
@@ -166,3 +184,112 @@ void MainWindow::on_btn_back_page2_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->page_tournamentSelection);
 }
+
+void MainWindow::setUiForPageResult()
+{
+    int round = ui->sB_NUMROUND->value();
+
+    QTableWidget *tw = new QTableWidget();
+    tw->setColumnCount(5);
+    QStringList fonts;
+    fonts << "   Team Left    " << "   Pints Left   " << ":" << "   Points Right   " << "   Team Right   ";
+    tw->setHorizontalHeaderLabels(fonts);
+    //resize to size
+    tw->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    //Font in table
+    QFont fnt;
+    fnt.setPointSize(15);
+    fnt.setFamily("Arial");
+    tw->setFont(fnt);
+    ui->page_tournyResult->setLayout(new QGridLayout);
+    ui->page_tournyResult->layout()->addWidget(tw);
+
+    for( int i = 0; i < round ; ++i ) {
+        tw->insertRow( i );
+        for( int j = 0; j < 5; ++j ) {
+
+            QTableWidgetItem *item = new QTableWidgetItem();
+            //alignment in den Cells
+            item->setTextAlignment(Qt::AlignCenter);
+            //alles readonly ausser Punkte
+            if ( j == 1 || j == 3) {
+                tw->setItem( i, j, item );
+            } else {
+                item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+                tw->setItem( i, j, item );
+            }
+        }
+    }
+
+    QString zusammenfuegen;
+    int l = 0;
+    int semicoloncounter = ui->sB_GAMENUMPLAYER->value()* 2 + 2;;
+    int RundeEnde=0;
+
+
+    for (int i = 0; i < rr_Ergebniss.size(); i++) {
+
+        if (QString::compare(rr_Ergebniss.at(i).toLocal8Bit().constData(), "+", Qt::CaseInsensitive) == 0) {
+            RundeEnde = i + 1;
+            break;
+        }
+    }
+
+    for (int j = 0; j <= round - 1; j++) {
+
+        for (int m = 0; m <= ui->sB_GAMENUMPLAYER->value(); m++) {
+
+
+            QString str = rr_Ergebniss.at(l).toLocal8Bit().constData();
+
+            if (str.toInt() || str == "0") {
+                int a = str.toInt();
+                zusammenfuegen.append(strl_Namen.value(a));
+                zusammenfuegen.append(",");
+            }
+
+            l++;
+        }
+
+        l -= ui->sB_GAMENUMPLAYER->value();
+        QTableWidgetItem *pCell = tw->item(j,0);
+        zusammenfuegen = zusammenfuegen.remove(zusammenfuegen.length()-1, 1);
+        pCell->setText(zusammenfuegen);
+        l += semicoloncounter - 1;
+        zusammenfuegen.clear();
+    }
+
+    zusammenfuegen.clear();
+    l = ui->sB_GAMENUMPLAYER->value() + 1;;
+
+    for (int j = 0; j <= round - 1; j++) {
+
+        for (int m = 0; m <= ui->sB_GAMENUMPLAYER->value(); m++) {
+
+            if (l > rr_Ergebniss.count() - 1) {
+                break;
+            }
+
+            QString str = rr_Ergebniss.at(l).toLocal8Bit().constData();
+
+            if (str.toInt() || str == "0") {
+                int a = str.toInt();
+                zusammenfuegen.append(strl_Namen.value(a));
+                zusammenfuegen.append(",");
+            }
+
+            l++;
+        }
+
+        l -= ui->sB_GAMENUMPLAYER->value();
+        QTableWidgetItem *pCell = tw->item(j,4);
+        zusammenfuegen = zusammenfuegen.remove(zusammenfuegen.length()-1, 1);
+        pCell->setText(zusammenfuegen);
+        l += semicoloncounter - 1;
+        zusammenfuegen.clear();
+    }
+
+
+}
+
+

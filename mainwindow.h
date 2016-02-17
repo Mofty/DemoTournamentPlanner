@@ -42,13 +42,13 @@ private slots:
 private:
     void setIcons();
     void setUiForPagePlayers();
+    void setUiForPageResult();
 
     QVBoxLayout *m_layout; //ly page 3
     QLineEdit *m_lineedit;
+    QStringList strl_Namen;
+    QStringList rr_Ergebniss;
 
-    QSpinBox *sB_player;
-    QSpinBox *sB_device;
-    QSpinBox *sB_round;
 
     Ui::MainWindow *ui;
 };
