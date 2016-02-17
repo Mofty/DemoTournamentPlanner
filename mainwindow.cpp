@@ -48,23 +48,6 @@ void MainWindow::setIcons()
 
 }
 
-void MainWindow::on_sB_player_editingFinished()
-{
-    qWarning() << "player: " << ui->sB_GAMENUMPLAYER->value();
-}
-
-void MainWindow::on_sB_device_editingFinished()
-{
-    //ui->sB_device->value();
-    qWarning() << "device: " << ui->sB_NUMPLAYER->value();
-}
-
-void MainWindow::on_sB_round_editingFinished()
-{
-    //ui->sB_round->value();
-    qWarning() << "round: " << ui->sB_NUMROUND->value();
-}
-
 void MainWindow::handleEdits()
 {
     disconnect(m_lineedit, SIGNAL (textEdited(QString)),this, SLOT (handleEdits()));
@@ -192,7 +175,7 @@ void MainWindow::setUiForPageResult()
     QTableWidget *tw = new QTableWidget();
     tw->setColumnCount(5);
     QStringList fonts;
-    fonts << "   Team Left    " << "   Pints Left   " << ":" << "   Points Right   " << "   Team Right   ";
+    fonts << "   Team Left    " << "   Points Left   " << ":" << "   Points Right   " << "   Team Right   ";
     tw->setHorizontalHeaderLabels(fonts);
     //resize to size
     tw->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);

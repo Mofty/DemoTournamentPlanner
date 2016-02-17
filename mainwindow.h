@@ -19,11 +19,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_sB_player_editingFinished();
-
-    void on_sB_device_editingFinished();
-
-    void on_sB_round_editingFinished();
 
     void handleEdits();
 
